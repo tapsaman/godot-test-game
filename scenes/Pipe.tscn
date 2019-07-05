@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/Pipe.gd" type="Script" id=1]
+[ext_resource path="res://art/pipe01.png" type="Texture" id=2]
+[ext_resource path="res://art/pipe01_back.png" type="Texture" id=3]
+[ext_resource path="res://art/pipe01_front.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1, 28 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.45975, 17.5596 )
+
+[node name="Pipe" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 2 )
+
+[node name="BackSprite" type="Sprite" parent="."]
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="FrontSprite" type="Sprite" parent="."]
+z_index = 1
+texture = ExtResource( 4 )
+
+[node name="BottomArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomArea2D"]
+position = Vector2( 0, 19.8063 )
+rotation = 1.5708
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -35.4272, 3.54374 )
+rotation = -0.125664
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 35.5728, 3.54374 )
+rotation = 0.125664
+shape = SubResource( 2 )
+[connection signal="body_entered" from="BottomArea2D" to="." method="_on_BottomArea2D_body_entered"]

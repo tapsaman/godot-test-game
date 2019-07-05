@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/TestLevel.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Pipe.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Block_Test.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/BallOutput.tscn" type="PackedScene" id=6]
+
+[node name="TestLevel" type="Node"]
+script = ExtResource( 1 )
+Ball = ExtResource( 2 )
+
+[node name="Pipe" parent="." instance=ExtResource( 3 )]
+position = Vector2( 120, 658.953 )
+type = 0
+
+[node name="Pipe02" parent="." instance=ExtResource( 3 )]
+position = Vector2( 240, 658.953 )
+
+[node name="Pipe03" parent="." instance=ExtResource( 3 )]
+position = Vector2( 360, 658.953 )
+type = 2
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="Block_Test" parent="." instance=ExtResource( 5 )]
+position = Vector2( 336.667, 412.36 )
+
+[node name="BallOutput01" parent="." instance=ExtResource( 6 )]
+position = Vector2( 90, 14 )
+
+[node name="BallOutput02" parent="." instance=ExtResource( 6 )]
+position = Vector2( 240, 14 )
+
+[node name="BallOutput03" parent="." instance=ExtResource( 6 )]
+position = Vector2( 390, 14 )
+[connection signal="pipedRight" from="Pipe" to="." method="_on_Pipe_pipedRight"]
+[connection signal="pipedRight" from="Pipe02" to="." method="_on_Pipe_pipedRight"]
+[connection signal="pipedRight" from="Pipe03" to="." method="_on_Pipe_pipedRight"]

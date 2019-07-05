@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Block_Test.gd" type="Script" id=1]
+[ext_resource path="res://art/block_fork.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 20.0022, 20.0244 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2.59783, 17.4625 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 19.867, 2.52495 )
+
+[node name="Block_Test" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 17, -17 )
+texture = ExtResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 17, -17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 17, -17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -17.3853, -2.56537 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -0.0681934, 17.4081 )
+shape = SubResource( 3 )
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
